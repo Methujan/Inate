@@ -99,6 +99,14 @@ def register():
     return render_template('register.html')
 
 
+@app.route('/logout')
+def logout():
+    session.pop('loggedin', None)
+    session.pop('id', None)
+    session.pop('username', None)
+    return redirect(url_for('login'))
+
+
 # start the server with the 'run()' method
 if __name__ == '__main__':
     app.run(debug=True)
