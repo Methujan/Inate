@@ -1,7 +1,6 @@
-# import the Flask class from the flask module
 from flask import Flask, render_template, redirect, url_for, request
 
-# create the application object
+
 app = Flask(__name__)
 
 # use decorators to link the function to a url
@@ -9,12 +8,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Hello, World!"  # return a string
+    return render_template('home.html')
 
 
 @app.route('/welcome')
 def welcome():
-    return render_template('welcome.html')  # render a template
+    return render_template('welcome.html')
 
 
 # Route for handling the login page logic
