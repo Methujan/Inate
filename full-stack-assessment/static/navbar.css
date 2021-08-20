@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+a,
+u {
+  text-decoration: none;
+  color: black;
+}
+
+.topnav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar_options_right {
+  font-weight: bolder;
+  font-size: 5vw;
+  padding-left: 1vw;
+}
+.navbar_options_left {
+  font-weight: bolder;
+  font-size: 2vw;
+  padding-top: 3vw;
+  font-family: "Roboto Mono", monospace;
+  text-transform: uppercase;
+}
