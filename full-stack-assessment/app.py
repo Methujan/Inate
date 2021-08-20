@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, flash
+from flask import Flask, render_template, redirect, url_for, request, flash, session
 import psycopg2
 import psycopg2.extras
 
@@ -28,7 +28,12 @@ db = scoped_session(sessionmaker(bind=engine))
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+
+    if 'loggedin' in session:
+
+        return render_template('home.html', username=session['username'])
+
+    return redirect(url_for('login'))
 
 
 @app.route('/welcome')
@@ -39,12 +44,34 @@ def welcome():
 # Route for handling the login page logic
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    cursor = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     error = None
-    if request.method == 'POST':
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
-            error = 'Invalid Credentials. Please try again.'
+    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+        username = request.form['username']
+        password = request.form['password']
+        print(username)
+        print(password)
+
+        cursor.execute(
+            'SELECT * FROM employee WHERE username = %s', (username,))
+        account = cursor.fetchone()
+
+        if account:
+            password_rs = account['password']
+            print(password_rs)
+
+            if password_rs:
+                session['loggedin'] = True
+                session['id'] = account['id']
+                session['username'] = account['username']
+
+                return redirect(url_for('home'))
+            else:
+                flash('Incorrect Username/Password')
+
         else:
-            return redirect(url_for('home'))
+            flash('Incorrect Username/Password')
+
     return render_template('login.html', error=error)
 
 

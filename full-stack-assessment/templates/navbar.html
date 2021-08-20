@@ -10,5 +10,8 @@
     <a class="navbar_options_right" href="/">Home</a>
     <a class="navbar_options_right" href="/login">Login</a>
     <a class="navbar_options_right" href="/register"> Register </a>
+    {% if 'loggedin' in session: %}
+    <a class="navbar_options_right" href="/register"> Logout </a>
+    {% endif %}
   </div>
 </div>

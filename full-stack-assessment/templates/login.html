@@ -7,26 +7,31 @@
   <body>
     {% include 'navbar.html' %}
     <div class="container">
-      <h1>Please login</h1>
+      <h1>Please enter your username and password</h1>
       <br />
-      <form action="" method="post">
+      <form action="{{ url_for('login')}}" method="POST">
         <input
           type="text"
           placeholder="Username"
           name="username"
-          value="{{
-          request.form.username }}"
+          id="username"
+          required
         />
         <input
           type="password"
           placeholder="Password"
           name="password"
-          value="{{
-          request.form.password }}"
+          id="username"
+          required
         />
-        <input class="btn btn-default" type="submit" value="Login" />
+        <input class="btn btn-default" type="submit" value="Login" name="" />
       </form>
-      {% if error %}
+      <div>
+        {% with messages = get_flashed_messages() %} {% if messages %} {% for
+        message in messages %}
+        <div>{{ message }}</div>
+      </div>
+      {% endfor %} {% endif %} {% endwith %} {% if error %}
       <p class="error"><strong>Error:</strong> {{ error }} {% endif %}</p>
     </div>
   </body>

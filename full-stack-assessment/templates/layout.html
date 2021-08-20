@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="static/bootstrap.min.css" rel="stylesheet" media="screen" />
+  </head>
+
+  <body>
+    {% include 'navbar.html' %} {% include 'OKRs.html' %}
+    <div class="container">{% block content %}{% endblock %}</div>
+  </body>
+</html>
