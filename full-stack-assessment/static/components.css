@@ -1,0 +1,48 @@
+.comp {
+  height: fit-content;
+  width: fit-content;
+  border-radius: 20px;
+  padding: 0 2vw;
+}
+
+.comp_title {
+  font-weight: bolder;
+  padding-top: 5px;
+  margin-bottom: 0px;
+}
+
+.comp_text {
+  font-style: italic;
+}
+
+.comp_OKRS {
+  padding: 0px 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffdab9;
+  border: 2px solid;
+  border-color: #ffdab5;
+}
+
+.comp_dashboard {
+  padding: 0px 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #c3e6fc;
+}
+
+.comp_investor_reporting {
+  padding: 0px 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0e0e0;
+}
