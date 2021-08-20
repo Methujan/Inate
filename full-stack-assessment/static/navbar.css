@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 
 a,
 u {
@@ -11,15 +11,21 @@ u {
   justify-content: space-between;
 }
 
-.navbar_options_right {
-  font-weight: bolder;
-  font-size: 5vw;
-  padding-left: 1vw;
-}
-.navbar_options_left {
+.navbar_right {
+  display: block;
   font-weight: bolder;
   font-size: 2vw;
   padding-top: 3vw;
-  font-family: "Roboto Mono", monospace;
+  font-family: "Lato", sans-serif;
   text-transform: uppercase;
+}
+
+.navbar_options_right {
+  padding-left: 1vw;
+}
+
+.navbar_left {
+  font-weight: bolder;
+  font-size: 5vw;
+  padding-left: 1vw;
 }
