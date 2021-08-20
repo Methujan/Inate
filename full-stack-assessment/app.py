@@ -1,8 +1,10 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, session
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
 import psycopg2
 import psycopg2.extras
 
-from sqlalchemy import create_engine
+import sqlalchemy
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 app = Flask(__name__)
@@ -19,9 +21,6 @@ DB_PASS = 'Friends02'
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER,
                         password=DB_PASS, host=DB_HOST)
 
-engine = create_engine(
-    "postgresql://postgres:Friends02@localhost:5432/inate")
-db = scoped_session(sessionmaker(bind=engine))
 
 # use decorators to link the function to a url
 
@@ -33,7 +32,7 @@ def home():
 
         return render_template('home.html', username=session['username'])
 
-    return redirect(url_for('login'))
+    return render_template('home.html')
 
 
 @app.route('/welcome')
@@ -53,7 +52,7 @@ def login():
         print(password)
 
         cursor.execute(
-            'SELECT * FROM employee WHERE username = %s', (username,))
+            'SELECT * FROM users WHERE username = %s', (username,))
         account = cursor.fetchone()
 
         if account:
@@ -84,7 +83,7 @@ def register():
         password = request.form.get('password')
 
         cursor.execute(
-            'SELECT * FROM employee WHERE username = %s', (username,))
+            'SELECT * FROM users WHERE username = %s', (username,))
         account = cursor.fetchone()
         print(account)
 
@@ -92,7 +91,7 @@ def register():
             flash('Account already exists!')
         else:
             cursor.execute(
-                "INSERT INTO employee(username, password) VALUES (%s,%s)", (username, password))
+                "INSERT INTO users(username, password) VALUES (%s,%s)", (username, password))
             conn.commit()
             flash('Register Success!')
 
