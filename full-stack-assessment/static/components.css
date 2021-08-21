@@ -46,3 +46,15 @@
   align-items: center;
   background-color: #e0e0e0;
 }
+
+.comp_due {
+  padding: 0px 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e6ffe6;
+  border: solid 2px;
+  border-color: #009900;
+}

@@ -14,6 +14,14 @@
       '/components/dashboard.html' %} {% include
       '/components/investor_reporting.html' %}
     </div>
+    {% endif %} {% if session['username']=='employee' %}
+    <div class="components_container">
+      {% include '/components/OKRs.html' %}
+    </div>
+    {% endif %} {% if session['username']=='user' %}
+    <div class="components_container">
+      {% include '/components/due_diligence.html' %}
+    </div>
     {% endif %}
     <div class="container">{% block content %}{% endblock %}</div>
   </body>
