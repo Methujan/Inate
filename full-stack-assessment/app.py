@@ -1,11 +1,12 @@
+from sqlalchemy.orm import scoped_session, sessionmaker
+import sqlalchemy
 from flask import Flask, render_template, redirect, url_for, request, flash, session
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 import psycopg2
 import psycopg2.extras
+from decouple import config
 
-import sqlalchemy
-from sqlalchemy.orm import scoped_session, sessionmaker
 
 app = Flask(__name__)
 
@@ -14,10 +15,10 @@ app.secret_key = '12345678'
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
-DB_HOST = 'localhost'
-DB_NAME = 'inate'
-DB_USER = 'postgres'
-DB_PASS = 'Friends02'
+DB_HOST = config('DB_HOST')
+DB_NAME = config('DB_NAME')
+DB_USER = config('DB_USER')
+DB_PASS = config('DB_PASS')
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER,
                         password=DB_PASS, host=DB_HOST)
 
