@@ -11,9 +11,7 @@ from decouple import config
 app = Flask(__name__)
 
 app.secret_key = '12345678'
-# Configure session to use filesystem
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
+
 
 DB_HOST = config('DB_HOST')
 DB_NAME = config('DB_NAME')
@@ -21,9 +19,6 @@ DB_USER = config('DB_USER')
 DB_PASS = config('DB_PASS')
 conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER,
                         password=DB_PASS, host=DB_HOST)
-
-
-# use decorators to link the function to a url
 
 
 @app.route('/')
