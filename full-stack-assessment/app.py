@@ -12,7 +12,6 @@ app = Flask(__name__)
 
 app.secret_key = '12345678'
 
-
 DB_HOST = config('DB_HOST')
 DB_NAME = config('DB_NAME')
 DB_USER = config('DB_USER')
